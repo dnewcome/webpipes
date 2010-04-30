@@ -1,3 +1,6 @@
+var sys = require( 'sys' );
+var http = require( 'http' );
+
 /**
 * utilities used by all webpipes command runners
 */

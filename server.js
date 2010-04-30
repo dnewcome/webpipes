@@ -5,6 +5,7 @@ data from another file as stdin instead of post data
 var http = require( 'http' );
 var sys = require('sys');
 var unixcmd = require('./unixcmd');
+var util = require('./util');
 
 // handle commandline arguments
 var listenport = parseInt( process.argv[2] );

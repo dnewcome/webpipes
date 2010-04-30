@@ -14,12 +14,12 @@ function getFileUrl( url, dataCallback, endCallback ) {
 	var stdinurl = require('url').parse( url );
 	var portno = stdinurl.port || 80;
 	var httpclient = http.createClient( portno, stdinurl.hostname );
-	var request = httpclient.request( 'GET', stdinurl.pathname );
+	var request = httpclient.request( 'GET', stdinurl.pathname, { host: stdinurl.hostname} );
 	request.addListener( 'response', function( response ){
-		sys.puts('running stdin response listener');
+		sys.puts('running response listener');
+		sys.puts('statuscode: ' + response.statusCode );
+		
 		response.addListener('data', dataCallback ); 
-		// i wonder if we can use the same callback, just
-		// check for data .. end won't pass an arg
 		response.addListener('end', endCallback );
 	});
 	request.end();

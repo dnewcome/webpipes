@@ -63,7 +63,7 @@ function unixCommand( req, res, cmd, cmdargs ) {
 	// write data from http post to stdin 
 	// as it appears
 	req.addListener( 'data', function( data ){
-		sys.puts( 'called data handler ' + ++count );
+		sys.puts( 'called data handler '  );
 		// sys.puts( data );
 		command.stdin.write( data );
 	});

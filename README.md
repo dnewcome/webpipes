@@ -7,26 +7,30 @@ This reference implementation of Webpipes was implemented using the Node.js, whi
 
 
 # Synopsis
-Suppose example.com is running a webpipes node that exposes two operations: grep and wc. These operations were chosen for the sake of simplicity in the example. Endpoints may be configured to call javascript modules or invoke native commands.
+Suppose `example.com` is running a Webpipes node that exposes two familiar operations: grep and wc. These operations were chosen for the sake of simplicity in the example. Endpoints may be configured to call javascript modules or invoke native commands.
 We are using a file available on the example.com http server as standard input. Http POST may be used instead, but since we want to use a typical web browser to run the example it is simpler to use a file as standard input.
 
-Given the file http://example.com/greptest.txt containing the following
+Given the file `http://example.com/greptest.txt` containing the lines:
 	one
 	two
 	onetwo
 
-The following unix shell expression
+The following familiar shell expression
 	$ grep 'one' greptest.txt | grep 'two' | wc -l
 
-Can be run across Webpipes nodes as follows
+Can be run across Webpipes nodes as follows, assuming `example.com` is running a Webpipes node at `http://example.com`
 	http://example.com/grep?args=['one']&stdin=http://example.com/greptest.txt&|=http://example.com/grep?args=['two']|http://example.com/wc?args=['-l']
 
 We try to keep the unix pipe '|' operator in the expression as much as possible. The first pipe necessarily is a url query string key, expressed as
 	&|=
+Subsequent pipes are expressed simply using the pipe operator
+	|
+
 
 # Further work
-Possible alternate command syntax
-better command routing configuration
+- Possible alternate command syntax
+- Reading local files
+- better command routing configuration
 
 # Open Issues
 Security

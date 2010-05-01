@@ -3,6 +3,7 @@ Webpipes aims to bring the Unix tradition of combining tools using pipes to the 
 
 # Motivation
 REST gave us a widely understood api for interacting with single servers on the web, but coordinating requests across multiple servers requires that the caller cache or forward data between all participants.
+Webpipes allows the coordination of multiple servers by the client without having to handle any data but the result.
 With the web becoming more realtime in nature, and with datasets becoming larger, the current synchronous request-response model where servers commonly cache requests starts breaking down.
 This reference implementation of Webpipes was implemented using Node.js, which allows streaming for all operations that suport it.
 

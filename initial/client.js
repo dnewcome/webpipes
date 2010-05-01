@@ -8,7 +8,7 @@ si.addListener( 'data', function( data ) {
 });
 
 function sendRequest( strData ) {
-	var httpclient = http.createClient( 9980, 'www.tritonelabs.com' );
+	var httpclient = http.createClient( 9980, 'localhost' );
 	var request = httpclient.request( 'POST', '/' );
 	request.addListener( 'response', function(){});
 	request.write( strData );

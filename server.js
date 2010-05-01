@@ -1,6 +1,5 @@
 /*
-evolving the idea to parse a commandline and alternatively get
-data from another file as stdin instead of post data
+* Webpipes sreaming node server
 */
 var http = require( 'http' );
 var sys = require('sys');
@@ -21,22 +20,18 @@ http.createServer( function( req, res ) {
 	var commands = getCommands( req.url ); 
 	sys.puts( '--- commands: ' + commands );
 	if( commands ) {
-		// todo: need to forward on the rest of the pipe if
-		// there is one 
 		var pipeurl = commands[0];
 		if( commands.length > 1 ) {
 			pipeurl += '&|=';
 			for( var i=1; i < commands.length; i++ ) {
 				pipeurl += commands[i];
 				if( commands[i] < commands.length - 1 ) {
-					// todo: use | and urlencode
 					pipeurl += '|';
 				}
 			}
 		}
 
 		sys.puts( 'opening request to next in pipe: ' + pipeurl );			
-		// we need to connect to the next node in the pipeline
 		var outrequest = util.postData( pipeurl, pipeDataCallback, pipeEndCallback );
 		function pipeDataCallback( data ) {
 			res.write( data );
@@ -56,7 +51,7 @@ http.createServer( function( req, res ) {
 	if( route == 'jath' ) {
 		doJath();
 	}
-	// gatekeeping, otw could run rm, etc.
+	// gatekeeping, otherwise could run rm, etc.
 	else if( route == 'cat' || route == 'grep' || route == 'wc' ) {
 		doUnix();
 	}
@@ -92,7 +87,6 @@ function getCommands( url ) {
 	var pipe = require('url').parse( url, true ).query['|']
 	sys.puts( 'pipeline urls: ' + pipe );
 	if( pipe ) {
-		// todo: urldecode and test for |
 		return  pipe.split('|');
 	}	
 	else {

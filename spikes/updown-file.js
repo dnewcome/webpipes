@@ -19,7 +19,7 @@ function returnform( res, res ) {
 '			<head>' +
 '			</head>' +
 '			<body>' +
-'				<form method="post" enctype="multipart/form-data" action="http://www.tritonelabs.com:9980">' +
+'				<form method="post" enctype="multipart/form-data" action="http://localhost:9980">' +
 '					<input type="file" name="iptFile"></input>' +
 '					<button type="submit"></button>' +
 '				</form>' +

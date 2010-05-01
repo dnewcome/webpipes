@@ -1,7 +1,7 @@
 /**
 * webpipes command to scrape data with jath
 */
-var xml = require( './lib/libxmljs' );
+var xml = require( 'libxmljs' );
 var jath = require( './lib/jath' );
 var util = require( './util' );
 var sys = require( 'sys' );

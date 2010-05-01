@@ -43,7 +43,8 @@ function getStdinUrl( stdin, command ) {
 }
 
 // run a unix command
-function unixCommand( req, res, cmd, cmdargs ) {
+// stdinPost - true if we want to read post data for stdin
+function unixCommand( req, res, cmd, cmdargs, stdinPost ) {
 	var spawn = require('child_process').spawn;
 
 	// as a test here we use one of the js files on the filesystem
@@ -60,16 +61,18 @@ function unixCommand( req, res, cmd, cmdargs ) {
 		res.end();
 	});
 
-	// write data from http post to stdin 
-	// as it appears
-	req.addListener( 'data', function( data ){
-		sys.puts( 'called data handler '  );
-		// sys.puts( data );
-		command.stdin.write( data );
-	});
-	// note that the first stdin method to finish will end the command
-	// req.addListener( 'end', function(){ ls.stdin.end(); } )
-
-	// we need to have the command so we can work with stdin
+	if( stdinPost == true ) {
+		// write data from http post to stdin 
+		// as it appears
+		req.addListener( 'data', function( data ){
+			sys.puts( 'called data handler '  );
+			// sys.puts( data );
+			command.stdin.write( data );
+		});
+		req.addListener( 'end', function() { 
+			sys.puts( 'called post stdin end handler '  );
+			command.stdin.end();
+		});
+	}
 	return command;
 }

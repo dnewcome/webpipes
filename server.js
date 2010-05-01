@@ -18,8 +18,18 @@ http.createServer( function( req, res ) {
 	sys.puts( 'request url is: ' + req.url );
 
 	res.writeHead( 200 )
-	doJath();
-//	doUnix();
+
+	var route = getRoute( req.url );
+	if( route == 'jath' ) {
+		doJath();
+	}
+	// gatekeeping, otw could run rm, etc.
+	else if( route == 'cat' || route == 'grep' ) {
+		doUnix();
+	}
+	else {
+		throw "unsupported command";
+	}
 
 	function doJath() {
 		jathparse.parse( req, res );			
@@ -27,9 +37,20 @@ http.createServer( function( req, res ) {
 
 	function doUnix() {
 		var cmd = unixcmd.parseUnixUrl( req.url );
-		var command = unixcmd.unixCommand( req, res, cmd.name, cmd.args );
-		unixcmd.getStdinUrl( cmd.stdin, command );
+		if( cmd.stdin ) {
+			sys.puts( 'stdin is from http get' );
+			var command = unixcmd.unixCommand( req, res, cmd.name, cmd.args, false );
+			unixcmd.getStdinUrl( cmd.stdin, command );
+		}
+		else {
+			sys.puts( 'stdin is from http post' );
+			var command = unixcmd.unixCommand( req, res, cmd.name, cmd.args, true );
+		}
 	}
 
 }).listen( listenport );
 
+function getRoute( url ) {
+	var path = require('url').parse( url ).pathname.split('/')[1];
+	return path;
+}

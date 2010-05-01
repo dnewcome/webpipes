@@ -24,6 +24,17 @@ http.createServer( function( req, res ) {
 		// todo: need to forward on the rest of the pipe if
 		// there is one 
 		var pipeurl = commands[0];
+		if( commands.length > 1 ) {
+			pipeurl += '&|=';
+			for( var i=1; i < commands.length; i++ ) {
+				pipeurl += commands[i];
+				if( commands[i] < commands.length - 1 ) {
+					// todo: use | and urlencode
+					pipeurl += '|';
+				}
+			}
+		}
+
 		sys.puts( 'opening request to next in pipe: ' + pipeurl );			
 		// we need to connect to the next node in the pipeline
 		var outrequest = util.postData( pipeurl, pipeDataCallback, pipeEndCallback );
@@ -46,7 +57,7 @@ http.createServer( function( req, res ) {
 		doJath();
 	}
 	// gatekeeping, otw could run rm, etc.
-	else if( route == 'cat' || route == 'grep' ) {
+	else if( route == 'cat' || route == 'grep' || route == 'wc' ) {
 		doUnix();
 	}
 	else {
@@ -78,10 +89,11 @@ function getRoute( url ) {
 }
 // return an array of all other commands in the pipeline
 function getCommands( url ) {
-	var pipe = require('url').parse( url, true ).query.pipe;
-	sys.puts( 'pipeline urls: ' + decodeURI( pipe ) );
+	var pipe = require('url').parse( url, true ).query['|']
+	sys.puts( 'pipeline urls: ' + pipe );
 	if( pipe ) {
-		return decodeURI( pipe ).split('|');
+		// todo: urldecode and test for |
+		return  pipe.split('|');
 	}	
 	else {
 		return null;

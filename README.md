@@ -1,5 +1,5 @@
 # About
-Webpipes aims to bring the Unix tradition of combining tools using pipes to the web with a request syntax that is modeled on the traditional Unix shell. The goal of Webpipes to enable development of composable web softwaree usable from any http user agent including common web browsers as well as scripting tools.
+Webpipes aims to bring the Unix tradition of combining tools using pipes to the web with a request syntax that is modeled on the traditional Unix shell. The goal of Webpipes to enable development of composable web software usable from any http user agent including common web browsers as well as scripting tools.
 
 # Motivation
 REST gave us a widely understood api for interacting with single servers on the web, but coordinating requests across multiple servers requires that the caller cache or forward data between all participants.
@@ -31,6 +31,8 @@ command arguments are specified using
 and using http post data as standard input can be overridden with a url using
 	stdin=
 
+# Dependencies
+Test cases depend on libxmljs. Webpipes iteslf has no dependencies other than the standard Node.js libraries.
 
 # Further work
 - Possible alternate command syntax to allow posting of more complex scripts

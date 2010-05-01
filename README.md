@@ -33,10 +33,13 @@ and using http post data as standard input can be overridden with a url using
 
 
 # Further work
-- Possible alternate command syntax
-- Reading local files
-- better command routing configuration
+- Possible alternate command syntax to allow posting of more complex scripts
+- Reading local files on commandline client or nodes
+- Command routing configuration via JSON
 
 # Open Issues
-Security
-Urlencoding
+- No security is provided in the current implementation. Nodes cannot be run on the open Internet as-is.
+- Potential URL encoding issues with user agents
+
+# License
+Copyright 2010 Dan Newcome. Provided under the MIT free software license. See the file LICENSE for the full text.

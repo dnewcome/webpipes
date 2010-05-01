@@ -1,10 +1,10 @@
 # About
-Webpipes aims to bring the Unix tradition of combining tools using pipes to the web. REST gave us a widely understood api for interacting with single servers on the web, but coordinating requests across multiple servers requires that the caller cache or forward data between all participants.
-With the web becoming more realtime in nature, and with datasets becoming larger, the current synchronous request-response model where servers commonly cache requests starts breaking down.
-This reference implementation of Webpipes was implemented using the Node.js, which allows streaming for all operations that suport it.
+Webpipes aims to bring the Unix tradition of combining tools using pipes to the web. The request syntax is modeled on the traditional Unix shell. Webpipes aims to be usable from any http user agent including common web browsers as well as scripting tools.
 
 # Motivation
-
+REST gave us a widely understood api for interacting with single servers on the web, but coordinating requests across multiple servers requires that the caller cache or forward data between all participants.
+With the web becoming more realtime in nature, and with datasets becoming larger, the current synchronous request-response model where servers commonly cache requests starts breaking down.
+This reference implementation of Webpipes was implemented using Node.js, which allows streaming for all operations that suport it.
 
 # Synopsis
 Suppose `example.com` is running a Webpipes node that exposes two familiar operations: grep and wc. These operations were chosen for the sake of simplicity in the example. Endpoints may be configured to call javascript modules or invoke native commands.

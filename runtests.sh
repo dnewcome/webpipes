@@ -6,4 +6,5 @@
 #, { id: 'co', added: '2004-11-15' }
 #]
 
-echo '[ "//label", { id: "@id", added: "@added" } ]' | ./wp http://localhost:9980/?src=http://localhost/labels.xml
+echo input data fixture must be placed on local webserver
+echo '[ "//label", { id: "@id", added: "@added" } ]' | ./wp http://localhost:9980/jath?src=http://localhost/labels.xml

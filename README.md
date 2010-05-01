@@ -8,7 +8,7 @@ This reference implementation of Webpipes was implemented using Node.js, which a
 
 # Synopsis
 Suppose `example.com` is running a Webpipes node that exposes two familiar operations: grep and wc. These operations were chosen for the sake of simplicity in the example. Endpoints may be configured to call javascript modules or invoke native commands.
-We are using a file available on the example.com http server as standard input. Http POST may be used instead, but since we want to use a typical web browser to run the example it is simpler to use a file as standard input.
+We are using a file available on the `example.com` http server as standard input. Http POST may be used instead, but since we want to use a typical web browser to run the example it is simpler to use a file as standard input.
 
 Given the file `http://example.com/greptest.txt` containing the lines:
 	one
@@ -25,6 +25,11 @@ We try to keep the unix pipe '|' operator in the expression as much as possible.
 	&|=
 Subsequent pipes are expressed simply using the pipe operator
 	|
+
+command arguments are specified using
+	args=
+and using http post data as standard input can be overridden with a url using
+	stdin=
 
 
 # Further work

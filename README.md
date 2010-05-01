@@ -1,5 +1,5 @@
 # About
-Webpipes aims to bring the Unix tradition of combining tools using pipes to the web. The request syntax is modeled on the traditional Unix shell. Webpipes aims to be usable from any http user agent including common web browsers as well as scripting tools.
+Webpipes aims to bring the Unix tradition of combining tools using pipes to the web with a request syntax that is modeled on the traditional Unix shell. The goal of Webpipes to be usable from any http user agent including common web browsers as well as scripting tools.
 
 # Motivation
 REST gave us a widely understood api for interacting with single servers on the web, but coordinating requests across multiple servers requires that the caller cache or forward data between all participants.

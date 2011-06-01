@@ -1,3 +1,3 @@
 #!/usr/bin/env node
-var wp = require( './wp' );
+var wp = require( './wpcli' );
 wp.exec( process.argv );
